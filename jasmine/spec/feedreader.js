@@ -21,7 +21,7 @@ $(function () {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function () {
+        it('allFeeds variables is defined', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -99,8 +99,7 @@ $(function () {
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */ 
     beforeEach(function (done) {
-        loadFeed(0, done);
-        //done();
+        loadFeed(0, done)
     })
     
      it('ensure loadFeed function is called and completes its work', function () {
@@ -108,8 +107,6 @@ $(function () {
         let entriesNo = $('.feed .entry').length
         expect(entriesNo).not.toBe(0);
      });
-
-  
 
    
 })
@@ -125,13 +122,13 @@ $(function () {
      */
     let oldContent, newContent ;
     beforeEach(function (done) {
-        loadFeed(0, done);
-        oldContent = $('.feed .entry').html();
-        loadFeed(1, done);
-    
+        loadFeed(0, function(){
+            oldContent = $('.feed .entry').html();
+            loadFeed(1, done);
+        });
     })
     
-     it('ensure loadFeed function is called and completes its work', function () {  
+     it('ensure new feed is loaded', function () {  
         newContent = $('.feed .entry').html();
         expect(oldContent).not.toBe(newContent);
      });
