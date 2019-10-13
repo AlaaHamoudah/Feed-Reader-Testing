@@ -59,8 +59,7 @@ $(function () {
         * hiding/showing of the menu element.
         */
         it('element is hidden by default', function () {
-            let className = $('body').attr("class");
-            expect(className).toBe('menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(true)
 
         });
 
@@ -72,14 +71,12 @@ $(function () {
         it('changes visibility when the menu icon is clicked', function () {
             // Click once
             $(".menu-icon-link").trigger("click");
-            let className = $('body').attr("class");
-            expect(className).toBe('')
+            expect($('body').hasClass('menu-hidden')).toBe(false)
 
 
             // Click again
             $(".menu-icon-link").trigger("click");
-            className = $('body').attr("class");
-            expect(className).toBe('menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(true)
 
         });
     })
